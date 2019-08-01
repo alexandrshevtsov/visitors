@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-//using Visitors.Core;
 using Visitors.Domain;
-//using Visitors.Core.Data;
 
 namespace Visitors.Data
 {

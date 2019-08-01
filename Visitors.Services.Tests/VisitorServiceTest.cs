@@ -15,24 +15,10 @@ namespace Visitors.Services.Tests
         public void GetDelta()
         {
             var service = GetService();
-
             var result = service.GetDelta();
-
-            Assert.True(result.Count == 2);
-            Assert.True(result.First(di => di.Id == 1).DeltaTime == 1800);
-            Assert.True(result.First(di => di.Id == 2).DeltaTime == 2400);
-
-            //var dbOptionsBuilder = new DbContextOptionsBuilder();
-
-            //dbOptionsBuilder.UseSqlServer("Server=(local);Initial Catalog=Testim;Persist Security Info=False;User ID=testim;Password=testim123;MultipleActiveResultSets=False;Connection Timeout=30;");
-
-            //var context = new DataContext(dbOptionsBuilder.Options);
-            //var repo = new EfRepository<Visitor>(context);
-            //var query = repo.TableNoTracking
-            //    .Where(at => at.Fullname.Equals("Vassea"))
-            //    .OrderByDescending(a => a.CreateDate)
-            //    .Take(10)
-            //    .ToList();
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1800, result.First(di => di.Id == 1).DeltaTime);
+            Assert.Equal(2400, result.First(di => di.Id == 2).DeltaTime);
         }
 
         private static IVisitorService GetService()
