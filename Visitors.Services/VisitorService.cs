@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Visitors.Data;
 using Visitors.Domain;
 using Visitors.Services.Contracts;
@@ -17,11 +19,11 @@ namespace Visitors.Services
             this.repository = repository;
         }
 
-        public ICollection<DeltaItem> GetDelta()
+        public async Task<ICollection<DeltaItem>> GetDelta()
         {
-            return repository.TableNoTracking
+            return await repository.TableNoTracking
                 .Select(v => new DeltaItem() { Id = v.Id, DeltaTime = Convert.ToInt32((v.LastEnterDate - v.CreateDate).TotalSeconds) })
-                .ToList();
+                .ToListAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Visitors.Services.Contracts;
 
 namespace Visitors.Web.Controllers
@@ -16,6 +17,6 @@ namespace Visitors.Web.Controllers
 
         //GET api/visitors/delta
         [HttpGet("delta")]
-        public ActionResult<string> Delta() => Ok(service.GetDelta());
+        public async Task<ActionResult<string>> DeltaAsync() => Ok(await service.GetDelta());
     }
 }
